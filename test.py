@@ -15,7 +15,9 @@ def validate_json(json_data, schema):
         errors = sorted(v.iter_errors(json_data), key=lambda e: e.path)
         
         for error in errors:
+            errorLogs.append("<br />")
             errorLogs.append(error.message)
+            
         return False, "Due to error(s) above, given JSON data is inValid!", errorLogs
 
     message = "Given JSON data is Valid!"
@@ -25,8 +27,8 @@ def validate_json(json_data, schema):
 logs = []
 for jsonFile in os.listdir("event"):
     if jsonFile.endswith(".json"): 
-        logs.append("-------------------------------------------------------------------------------")
-        logs.append("____________Checking " +  jsonFile + " file____________")
+        logs.append("-------------------------------------------------------------------------------<br />")
+        logs.append("------------Checking " +  jsonFile + " file------------<br />")
         with open(os.path.join("event", jsonFile), 'r') as file:
             jsonFile = json.load(file)
         
